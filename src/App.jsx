@@ -58,16 +58,15 @@ import { useState } from "react";
 
 function App() {
   const [itens, setItens] = useState([
-    { id: 1, texto: "Arroz", comprado: false }, // 👈 Adicionado comprado
-    { id: 2, texto: "Feijão", comprado: false }, // 👈 Adicionado comprado
-    { id: 3, texto: "Leite", comprado: false }, // 👈 Adicionado comprado
+    { id: 1, texto: "Arroz", comprado: false },
+    { id: 2, texto: "Feijão", comprado: false },
+    { id: 3, texto: "Leite", comprado: false }, 
   ]);
 
   const [novoItem, setNovoItem] = useState("");
 
   function adicionarItem() {
     if (!novoItem.trim()) return;
-    // 👈 Adicionado comprado: false no novo item
     setItens((atual) => [...atual, { id: Date.now(), texto: novoItem, comprado: false }]);
     setNovoItem("");
   }
@@ -76,7 +75,6 @@ function App() {
     setItens((atual) => atual.filter((item) => item.id !== id));
   }
 
-  // 🔴 NOVA FUNÇÃO PARA O BÔNUS: Inverte o valor de comprado
   function alternarComprado(id) {
     setItens((atual) =>
       atual.map((item) =>
@@ -109,8 +107,8 @@ function App() {
         <ItemLista
           key={item.id}
           texto={item.texto}
-          comprado={item.comprado} // 👈 Passando o estado atual
-          onAlternarComprado={() => alternarComprado(item.id)} // 👈 Passando a função de clique
+          comprado={item.comprado} 
+          onAlternarComprado={() => alternarComprado(item.id)} 
           onRemover={() => removerItem(item.id)}
         />
       ))}
